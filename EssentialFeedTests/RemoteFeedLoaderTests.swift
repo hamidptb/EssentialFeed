@@ -6,7 +6,7 @@
 //
 
 import XCTest
-@testable import EssentialFeed
+import EssentialFeed
 
 class RemoteFeedLoaderTests: XCTestCase {
     
@@ -16,13 +16,23 @@ class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertNil(client.requestedURL)
     }
     
-    func test_load_requestDataFromURL() {
-        let url = URL(string: "https://b-url.com")!
+    func test_load_requestsDataFromURL() {
+        let url = URL(string: "https://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
         
         sut.load()
         
         XCTAssertEqual(client.requestedURL, url)
+    }
+    
+    func test_loadTwice_requestsDataFromURLTwice() {
+        let url = URL(string: "https://a-given-url.com")!
+        let (sut, client) = makeSUT(url: url)
+        
+        sut.load()
+        sut.load()
+        
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     // MARK: - Helpers
@@ -35,9 +45,11 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     private class HttpClientSpy: HttpClient {
         var requestedURL : URL?
+        var requestedURLs = [URL]()
         
         func get(from url: URL) {
             requestedURL = url
+            requestedURLs.append(url)
         }
     }
     
