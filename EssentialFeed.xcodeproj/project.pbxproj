@@ -103,9 +103,17 @@
 		038AAFD32A87796A00203F2E /* EssentialFeedTests */ = {
 			isa = PBXGroup;
 			children = (
-				038AAFE52A877D7800203F2E /* RemoteFeedLoaderTests.swift */,
+				039B61822AC22B12007C0DB7 /* Feed API */,
 			);
 			path = EssentialFeedTests;
+			sourceTree = "<group>";
+		};
+		039B61822AC22B12007C0DB7 /* Feed API */ = {
+			isa = PBXGroup;
+			children = (
+				038AAFE52A877D7800203F2E /* RemoteFeedLoaderTests.swift */,
+			);
+			path = "Feed API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
